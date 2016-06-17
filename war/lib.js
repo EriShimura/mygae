@@ -1,14 +1,14 @@
 function createHttpRequest(){
     var httplist = [
-	function(){ return new XHLHttpRequest(); },
-	function(){ return new ActiveXObject("Msxml2.XMLHTTP"); },
-	function(){ return new ActiveXObject("Microsoft.XMLHTTP") }
+        function(){ return new XMLHttpRequest(); },
+        function(){ return new ActiveXObject("Msxml2.XMLHTTP"); },
+        function(){ return new ActiveXObject("Microsoft.XMLHTTP"); }
     ];
-    for(var i = 0;i < httplist.length; i++){
-	try{
-	    var http = httplist[i]();
-	    if(http != null){ return http; }
-	}catch(e){ continue; }
+    for(var i = 0;i < httplist.length;i++){
+        try {
+            var http = httplist[i]();
+            if (http != null){ return http; }
+        } catch(e){ continue; }
     }
     return null;
 }
@@ -23,8 +23,8 @@ function getData(id){
 	if(id != null) uri = "/mygae?id=" + id;
 	request.open("GET", uri, true);
 	request.setRequestHeader("User-Agent","XMLHttpRequest");
-	request.onreadystatechange = function()
-		{ if(request.readyState == 4 && request.status == 200){ callback(request); } }
+	request.onreadystatechange = function() // 通信状態が変化する度に実行
+		{ if(request.readyState == 4 && request.status == 200){ callback(request); } } // 4:全部通信終了 200:問題ない
 	request.send();
 }
 

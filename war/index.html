@@ -31,6 +31,7 @@
             }
             var obj = document.getElementById("datatable");
             obj.innerHTML = res;
+            document.getElementById("test").innerHTML(request.responseText);
         }
         //-->
         </script>
@@ -45,5 +46,6 @@
     </table>
     <br>
     <div><a href="add.html">データの新規追加</a></div>
+    <p id="test"></p>
   </body>
 </html>
